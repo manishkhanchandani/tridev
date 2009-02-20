@@ -1,0 +1,13 @@
+#MainMenu ul li a {
+	font-size: 11px;
+	color: #0000FF;
+	text-decoration: none;	
+}
+#topNav {
+	float:right;
+	font-size:12px;
+}
+#topNav a {
+	text-decoration:none;
+	color:#FF0000;
+}
