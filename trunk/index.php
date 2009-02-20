@@ -18,6 +18,16 @@ $smarty->compile_dir = 'includes/templates_c';
 $smarty->cache_dir = 'includes/cache';
 $smarty->config_dir = 'includes/configs';
 
+define('FOLDER', "/tridevlocal");
+define('HTTPPATH', "http://".$_SERVER['HTTP_HOST'].FOLDER);
+define('DOCPATH', $_SERVER['DOCUMENT_ROOT'].FOLDER);
+
+$PAGETITLE = "Tridev Social Networking Site";
+$smarty->assign('HTTPPATH', HTTPPATH);
+$smarty->assign('FOLDER', FOLDER);
+$smarty->assign('DOCPATH', DOCPATH);
+$smarty->assign('PAGETITLE', $PAGETITLE);
+
 if($_GET['p']) $p = $_GET['p'].".php";
 if(!$p) $p = "home.php";
 if(!file_exists($p)) $p = "error.php";
