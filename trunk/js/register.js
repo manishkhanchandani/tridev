@@ -10,7 +10,10 @@ $(function() {
 		
 		$("#register").validate({
 		rules: {
-			name: "required",
+			name: {
+				required: true,
+				minlength: 4
+			},
 			password: {
 				required: true,
 				minlength: 8
@@ -27,7 +30,10 @@ $(function() {
 			agree: "required"
 		},
 		messages: {
-			firstname: "Please enter your name",
+			firstname: {
+				required: "Please enter your name",
+				minlength: "Your name must be at least 4 characters long"
+			},
 			password: {
 				required: "Please provide a password",
 				minlength: "Your password must be at least 8 characters long"
