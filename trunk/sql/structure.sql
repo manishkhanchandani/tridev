@@ -186,15 +186,16 @@ CREATE TABLE `site_polls_result` (
 -- 
 
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL auto_increment,
-  `email` varchar(150)  default NULL,
-  `password` varchar(50)  default NULL,
-  `name` varchar(100)  default NULL,
-  `verify_code` varchar(100)  default NULL,
-  `created` timestamp NOT NULL default CURRENT_TIMESTAMP,
-  `role` enum('Admin','Moderator','User')  NOT NULL default 'User',
-  PRIMARY KEY  (`user_id`)
-) ENGINE=MyISAM ;
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(150) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `verify_code` varchar(100) DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `role` enum('Admin','Moderator','User') NOT NULL DEFAULT 'User',
+  `status` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`user_id`)
+) ENGINE=MyISAM;
 
 -- --------------------------------------------------------
 
