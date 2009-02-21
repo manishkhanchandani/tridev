@@ -14,8 +14,19 @@ class Users {
 			$msg = "Password field is blank.";
 			throw new Exception($msg);
 		}
-		if(!$_POST['validEmail']) {
-			$msg = "Email field is not valid.";
+		return true;
+	}
+	public function validateRegisterForm($post) {
+		if(!trim($post['email'])) {
+			$msg = "Email field is blank.";
+			throw new Exception($msg);
+		}
+		if(!trim($_POST['password'])) {
+			$msg = "Password field is blank.";
+			throw new Exception($msg);
+		}
+		if(trim($_POST['password'])!=trim($_POST['confirm_password'])) {
+			$msg = "Password and confirm password field are not matching.";
 			throw new Exception($msg);
 		}
 		return true;
@@ -33,7 +44,7 @@ class Users {
 		setcookie("role", '', (time()-300), "/");	
 	}
 	public function addNewUser($post) {
-		$sql = "select * from jal_users where email = ".$this->dbFrameWork->qstr(trim($post['email']),get_magic_quotes_gpc());
+		$sql = "select * from users where email = ".$this->dbFrameWork->qstr(trim($post['email']),get_magic_quotes_gpc());
 		$rs = $this->dbFrameWork->Execute($sql);
 		if($this->dbFrameWork->ErrorMsg()) {
 			throw new Exception($this->dbFrameWork->ErrorMsg());
@@ -41,25 +52,27 @@ class Users {
 		$num = $rs->RecordCount();
 		if($num==0) {
 			// register this user
-			$post['name'] = substr_replace(trim($post['email']), "", strpos($user, "@"));
-			$post['lastlogin'] = date('Y-m-d H:i:s');
-			$post['status'] = 1;
+			$post['verify_code'] = md5($post['email']);
+			$noencrypt = $post['password'];
+			$post['password'] = md5($post['password']);
 			$post['role'] = "User";
-			$id = $this->Common->phpinsert('jal_users', 'user_id', $post);
-			$this->login($id, addslashes(stripslashes(trim($post['remember']))), addslashes(stripslashes(trim($post['email']))), 'User');	
+			$id = $this->Common->phpinsert('users', 'user_id', $post);
 			// email
 			$Emailtemplate = new Emailtemplate;
 			$patterns[0] = "{PASSWORD}";
-			$replacements[0] = $_POST['password'];		
+			$replacements[0] = $noencrypt;		
 			$patterns[1] = "{SITEURL}";
 			$replacements[1] = SITEURL;
 			$patterns[2] = "{EMAIL}";
 			$replacements[2] = $post['email'];
+			$patterns[3] = "{LINK}";
+			$replacements[4] = HTTPPATH."/index.php?action=confirm&vc=".$post['verify_code']."&email=".$post['email'];
 			$to = $post['email'];
-			$Emailtemplate->template($to, 'register', $patterns, $replacements);			
-			$msg = "You are successfully logged on our site";
+			$Emailtemplate->template($to, 'register', $patterns, $replacements);
 			// email ends
 		} else {
+			throw new Exception("Users Email already exists on our database.");
+			/*
 			// check password
 			$sql = "select * from jal_users where email = ".$this->dbFrameWork->qstr(trim($post['email']),get_magic_quotes_gpc())." and password = ".$this->dbFrameWork->qstr(trim($post['password']),get_magic_quotes_gpc());
 			$rs1 = $this->dbFrameWork->Execute($sql);
@@ -75,8 +88,31 @@ class Users {
 				$this->login($rec['user_id'], addslashes(stripslashes(trim($post['remember']))), addslashes(stripslashes(trim($rec['email']))), $rec['role']);		
 				$msg = "You are successfully logged on our site";
 			}
+			*/
 		}
-		return $msg;
+		return true;
+	}
+	public function confirmation($e, $vc) {
+		$sql = "select * from users where email = ".$this->dbFrameWork->qstr(trim($e),get_magic_quotes_gpc())." AND verify_code = ".$this->dbFrameWork->qstr(trim($vc),get_magic_quotes_gpc());
+		$rs = $this->dbFrameWork->Execute($sql);
+		if($this->dbFrameWork->ErrorMsg()) {
+			throw new Exception($this->dbFrameWork->ErrorMsg());
+		}
+		$num = $rs->RecordCount();
+		if($num==0) {
+			throw new Exception("Verify Link is not correct. Please check the link and try again.");
+		} else {
+			$rec = $rs->FetchRow();
+			if($rec['status']==1) {
+				throw new Exception("You have already verified your email address.");
+			}
+			$sql = "update users set status = 1 WHERE email = ".$this->dbFrameWork->qstr(trim($e),get_magic_quotes_gpc());
+			$rs = $this->dbFrameWork->Execute($sql);
+			if($this->dbFrameWork->ErrorMsg()) {
+				throw new Exception($this->dbFrameWork->ErrorMsg());
+			}			
+		}
+		return true;
 	}
 	public function validate_email($email) {
 		if(!trim($email)) {
