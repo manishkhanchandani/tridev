@@ -2,6 +2,8 @@
 switch($_GET['action']) {
 	case 'forgot':
 		$PAGETITLE = "Welcome To Tridev Social Network :: Forgot Password";
+		$styleJs = HTTPPATH."/js/forgot.js";
+		$smarty->assign('styleJs', $styleJs);
 		$body = $smarty->fetch('forgot.html');
 		break;
 	case 'register':
