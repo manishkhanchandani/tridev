@@ -7,6 +7,12 @@
 			<form action="" method="post" id="register" name="register">
 				<fieldset>
 					<legend>User details</legend>
+					{if $errorMessage != ""}
+						<div class="errorMessage">{$errorMessage}</div>
+					{/if}
+					{if $msg != ""}
+						<div class="errorMessage">{$msg}</div>
+					{/if}
 					<ul>
 						<li>
 							<label for="email"><span class="required">Email address</span></label>
@@ -37,6 +43,7 @@
 				
 				<fieldset class="submit">
 					<input type="submit" class="button" value="Register Me!" />
+				    <input name="MM_Type" type="hidden" id="MM_Type" value="register" />
 				</fieldset>
 
 				
