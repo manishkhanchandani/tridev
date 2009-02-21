@@ -454,4 +454,8 @@
 	.clear{
 		clear:both;
 		}
+.errorMessage {
+	font-weight: bold;
+	color: #FF0000;
+}
 		
