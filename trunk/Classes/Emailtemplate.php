@@ -7,7 +7,8 @@ class Emailtemplate {
 			case 'register':
 				$sub = "Successfull Registeration";
 				$template = "Dear User,
-Your email is {EMAIL} and password is: '{PASSWORD}'. You can login on site {SITEURL} with this details.
+Your email is {EMAIL} and password is: '{PASSWORD}'. You can login on site {SITEURL} with this details. Click or copy and paste below link to confirm your email address.
+{LINK}
 
 Regards,
 Administrator
