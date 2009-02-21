@@ -18,8 +18,13 @@ $smarty->template_dir = 'includes/templates';
 $smarty->compile_dir = 'includes/templates_c';
 $smarty->cache_dir = 'includes/cache';
 $smarty->config_dir = 'includes/configs';
-
-define('FOLDER', "/tridevlocal");
+if($_SERVER['HTTP_HOST']=="tridev.info" || $_SERVER['HTTP_HOST']=="www.tridev.info") {
+	define('FOLDER', "");
+} else if($_SERVER['HTTP_HOST']=="localhost") {
+	define('FOLDER', "/tridevlocal");
+} else {
+	define('FOLDER', "/tridev.info");
+}
 define('HTTPPATH', "http://".$_SERVER['HTTP_HOST'].FOLDER);
 define('DOCPATH', $_SERVER['DOCUMENT_ROOT'].FOLDER);
 $PAGETITLE = "Tridev Social Networking Site";
@@ -51,7 +56,7 @@ try {
 	if($_SERVER['HTTP_HOST']=="localhost") {
 		$dbFrameWork->Connect('localhost','user','password','tridev');# connect to MySQL, framework db
 	} else {
-		$dbFrameWork->Connect('remote-mysql4.servage.net','user','password','db');# connect to MySQL, framework db
+		$dbFrameWork->Connect('mysql1022.servage.net','tridevinfo','password123','tridevinfo');# connect to MySQL, framework db
 	}
 } catch (exception $e) { 
 	ob_end_clean();
