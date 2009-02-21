@@ -15,3 +15,10 @@
 	font-family: Verdana;
 	font-size: 12px;
 }
+.errorMessage {
+	font-weight: bold;
+	color: #FF0000;
+}
+.clear{
+clear:both;
+}
