@@ -1,3 +1,11 @@
+if(location.hostname=="tridev.info"||location.hostname=="www.tridev.info") {
+	var HTTPPath = "http://"+location.hostname;	
+} else if(location.hostname=="localhost") {
+	var HTTPPath = "http://"+location.hostname+"/tridevlocal";
+} else {
+	var HTTPPath = "http://"+location.hostname+"/tridev.info";
+}
+
 function getXmlHttpRequestObject() { 
 	if (window.XMLHttpRequest) { 
 		return new XMLHttpRequest(); 
