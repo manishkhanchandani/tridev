@@ -2,12 +2,181 @@
 <div id="displayMessage"></div>
   <table border="0" cellspacing="1" cellpadding="5">
     <tr>
-      <td>&nbsp;</td>
+      <td align="right">Education:</td>
+      <td><select name="educationLevel" id="educationLevel">
+<option value="0">no answer</option>
+<option value="1">Elementary</option>
+<option value="2">High School</option>
+<option value="3">Some College</option>
+<option value="4">Associates Degree</option>
+<option value="5">Bachelor's Degree</option>
+<option selected="selected" value="6">Master's Degree</option>
+<option value="7">Ph.D.</option>
+<option value="8">Postdoctoral</option>
+</select></td>
+    </tr>
+    <tr>
+      <td align="right">High School: </td>
+      <td valign="top"><input name="highschool" type="text" id="highschool" /></td>
+    </tr>
+    <tr>
+      <td align="right">College/ University: </td>
+      <td valign="top"><input name="college" type="text" id="college" /></td>
+    </tr>
+    <tr>
+      <td align="right">Degree:</td>
+      <td><select name="education_degree" id="education_degree">
+<option value="0"/>
+<option value="1">B</option>
+<option value="2">BA</option>
+<option value="3">BAR</option>
+<option value="4">BAS</option>
+<option value="5">BS</option>
+<option value="6">CRT</option>
+<option value="7">DDS</option>
+<option value="8">DMA</option>
+<option value="9">DMD</option>
+<option value="10">DOM</option>
+<option value="11">DVM</option>
+<option value="12">EDD</option>
+<option value="13">EDM</option>
+<option value="14">EDS</option>
+<option value="15">ENG</option>
+<option value="16">IA</option>
+<option value="17">JD</option>
+<option value="18">JM</option>
+<option value="19">JSD</option>
+<option value="20">JSM</option>
+<option value="21">LLB</option>
+<option value="22">LLM</option>
+<option value="23">MA</option>
+<option value="24">MAR</option>
+<option value="25">MAT</option>
+<option value="26">MBA</option>
+<option value="27">MD</option>
+<option value="28">MEA</option>
+<option value="29">MFA</option>
+<option value="30">MLA</option>
+<option value="31">MLS</option>
+<option value="32">MPH</option>
+<option value="33">MS</option>
+<option value="34">MSD</option>
+<option value="35">MSM</option>
+<option value="36">MSW</option>
+<option value="37">PHD</option>
+<option value="38">RN</option>
+</select></td>
+    </tr>
+    <tr>
+      <td align="right">Year:</td>
+      <td><select name="education_year" id="education_year">
+<option value="">no answer</option>
+<option value="1979">1979</option>
+<option value="1980">1980</option>
+<option value="1981">1981</option>
+<option value="1982">1982</option>
+<option value="1983">1983</option>
+<option value="1984">1984</option>
+<option value="1985">1985</option>
+<option value="1986">1986</option>
+<option value="1987">1987</option>
+<option value="1988">1988</option>
+<option value="1989">1989</option>
+<option value="1990">1990</option>
+<option value="1991">1991</option>
+<option value="1992">1992</option>
+<option value="1993">1993</option>
+<option value="1994">1994</option>
+<option value="1995">1995</option>
+<option value="1996">1996</option>
+<option value="1997">1997</option>
+<option value="1998">1998</option>
+<option value="1999">1999</option>
+<option value="2000">2000</option>
+<option value="2001">2001</option>
+<option value="2002">2002</option>
+<option value="2003">2003</option>
+<option value="2004">2004</option>
+<option value="2005">2005</option>
+<option value="2006">2006</option>
+<option value="2007">2007</option>
+<option value="2008">2008</option>
+<option value="2009">2009</option>
+<option value="2010">2010</option>
+<option value="2011">2011</option>
+<option value="2012">2012</option>
+<option value="2013">2013</option>
+<option value="2014">2014</option>
+</select></td>
+    </tr>
+    <tr>
+      <td align="right">&nbsp;</td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td align="right">Occupation:</td>
+      <td><input name="occupation" type="text" id="occupation" /></td>
+    </tr>
+    <tr>
+      <td align="right">Industry:</td>
+      <td><select name="industry" id="industry">
+<option value="0">no answer</option>
+<option value="1">Agriculture</option>
+<option value="2">Arts</option>
+<option value="3">Construction</option>
+<option value="4">Consumer Goods</option>
+<option value="5">Corporate Services</option>
+<option value="6">Education</option>
+<option value="7">Finance</option>
+<option value="8">Government</option>
+<option value="9">High Tech</option>
+<option value="10">Legal</option>
+<option value="11">Manufacturing</option>
+<option value="12">Media</option>
+<option value="13">Medical and Health Care</option>
+<option value="14">Non-Profit</option>
+<option value="15">Recreation, Travel, and Entertainment</option>
+<option value="16">Scientific</option>
+<option value="17">Service Industry</option>
+<option value="18">Transportation</option>
+</select></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">Company/ Organization: </td>
+      <td valign="top"><input name="company" type="text" id="company" /></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">Company Webpage: </td>
+      <td valign="top"><input name="company_webpage" type="text" id="company_webpage" /></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">Title:</td>
+      <td valign="top"><input name="company_title" type="text" id="company_title" /></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">Job Description: </td>
+      <td valign="top"><textarea name="job_description" cols="45" rows="3" id="job_description"></textarea></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">Work Phone: </td>
+      <td valign="top"><input name="workphone" type="text" id="workphone" /></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">Work Email: </td>
+      <td valign="top"><input name="work_email" type="text" id="work_email" /></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">Career Skills: </td>
+      <td valign="top"><textarea name="career_skills" cols="45" rows="3" id="career_skills"></textarea></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">Career Interests: </td>
+      <td valign="top"><textarea name="career_interests" cols="45" rows="3" id="career_interests"></textarea></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">&nbsp;</td>
+      <td valign="top"><input type="button" name="Button" value="Update" onclick="alert('form submited');" />
+      <input type="hidden" name="MM_Insert" value="1" /></td>
     </tr>
   </table>
 </form>

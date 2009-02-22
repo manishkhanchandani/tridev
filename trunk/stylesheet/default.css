@@ -19,6 +19,10 @@
 	font-weight: bold;
 	color: #FF0000;
 }
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
 .clear{
 clear:both;
 }
