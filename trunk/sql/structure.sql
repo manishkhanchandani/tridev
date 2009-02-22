@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 22, 2009 at 09:54 PM
+-- Generation Time: Feb 22, 2009 at 10:00 PM
 -- Server version: 5.1.30
 -- PHP Version: 5.2.8
 
@@ -25,7 +25,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `albums`
 --
 
-DROP TABLE IF EXISTS `albums`;
 CREATE TABLE IF NOT EXISTS `albums` (
   `album_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0',
@@ -45,7 +44,6 @@ CREATE TABLE IF NOT EXISTS `albums` (
 -- Table structure for table `albums_pics`
 --
 
-DROP TABLE IF EXISTS `albums_pics`;
 CREATE TABLE IF NOT EXISTS `albums_pics` (
   `pic_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0',
@@ -66,7 +64,6 @@ CREATE TABLE IF NOT EXISTS `albums_pics` (
 -- Table structure for table `city`
 --
 
-DROP TABLE IF EXISTS `city`;
 CREATE TABLE IF NOT EXISTS `city` (
   `city_id` int(11) NOT NULL,
   `city` varchar(200) NOT NULL,
@@ -84,7 +81,6 @@ CREATE TABLE IF NOT EXISTS `city` (
 -- Table structure for table `country`
 --
 
-DROP TABLE IF EXISTS `country`;
 CREATE TABLE IF NOT EXISTS `country` (
   `country_id` int(11) NOT NULL AUTO_INCREMENT,
   `country` varchar(200) NOT NULL,
@@ -331,7 +327,6 @@ INSERT INTO `country` (`country_id`, `country`) VALUES
 -- Table structure for table `friends`
 --
 
-DROP TABLE IF EXISTS `friends`;
 CREATE TABLE IF NOT EXISTS `friends` (
   `user_id` int(11) NOT NULL DEFAULT '0',
   `friend_id` int(11) NOT NULL DEFAULT '0'
@@ -348,7 +343,6 @@ CREATE TABLE IF NOT EXISTS `friends` (
 -- Table structure for table `friends_tmp`
 --
 
-DROP TABLE IF EXISTS `friends_tmp`;
 CREATE TABLE IF NOT EXISTS `friends_tmp` (
   `user_id` int(11) NOT NULL DEFAULT '0',
   `friend_id` int(11) NOT NULL DEFAULT '0'
@@ -365,7 +359,6 @@ CREATE TABLE IF NOT EXISTS `friends_tmp` (
 -- Table structure for table `hobbies`
 --
 
-DROP TABLE IF EXISTS `hobbies`;
 CREATE TABLE IF NOT EXISTS `hobbies` (
   `user_id` int(11) NOT NULL DEFAULT '0',
   `hobby` int(11) NOT NULL DEFAULT '0',
@@ -383,7 +376,6 @@ CREATE TABLE IF NOT EXISTS `hobbies` (
 -- Table structure for table `hobby_data`
 --
 
-DROP TABLE IF EXISTS `hobby_data`;
 CREATE TABLE IF NOT EXISTS `hobby_data` (
   `hobby` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(25) DEFAULT NULL,
@@ -401,7 +393,6 @@ CREATE TABLE IF NOT EXISTS `hobby_data` (
 -- Table structure for table `ignorelist`
 --
 
-DROP TABLE IF EXISTS `ignorelist`;
 CREATE TABLE IF NOT EXISTS `ignorelist` (
   `user_id` int(11) NOT NULL DEFAULT '0',
   `ignore_id` int(11) NOT NULL DEFAULT '0'
@@ -418,7 +409,6 @@ CREATE TABLE IF NOT EXISTS `ignorelist` (
 -- Table structure for table `profile1`
 --
 
-DROP TABLE IF EXISTS `profile1`;
 CREATE TABLE IF NOT EXISTS `profile1` (
   `user_id` int(11) NOT NULL,
   `gender` enum('Male','Female','Couple') DEFAULT NULL,
@@ -464,7 +454,6 @@ CREATE TABLE IF NOT EXISTS `profile1` (
 -- Table structure for table `profile2`
 --
 
-DROP TABLE IF EXISTS `profile2`;
 CREATE TABLE IF NOT EXISTS `profile2` (
   `user_id` int(11) NOT NULL,
   `aboutme` text,
@@ -522,7 +511,6 @@ CREATE TABLE IF NOT EXISTS `profile2` (
 -- Table structure for table `province`
 --
 
-DROP TABLE IF EXISTS `province`;
 CREATE TABLE IF NOT EXISTS `province` (
   `province_id` int(11) NOT NULL AUTO_INCREMENT,
   `province` varchar(200) NOT NULL,
@@ -540,7 +528,6 @@ CREATE TABLE IF NOT EXISTS `province` (
 -- Table structure for table `scrapbook`
 --
 
-DROP TABLE IF EXISTS `scrapbook`;
 CREATE TABLE IF NOT EXISTS `scrapbook` (
   `scrap_id` int(11) NOT NULL AUTO_INCREMENT,
   `to_user_id` int(11) NOT NULL,
@@ -561,7 +548,6 @@ CREATE TABLE IF NOT EXISTS `scrapbook` (
 -- Table structure for table `site_polls`
 --
 
-DROP TABLE IF EXISTS `site_polls`;
 CREATE TABLE IF NOT EXISTS `site_polls` (
   `poll_id` int(11) NOT NULL AUTO_INCREMENT,
   `question` text,
@@ -586,7 +572,6 @@ CREATE TABLE IF NOT EXISTS `site_polls` (
 -- Table structure for table `site_polls_result`
 --
 
-DROP TABLE IF EXISTS `site_polls_result`;
 CREATE TABLE IF NOT EXISTS `site_polls_result` (
   `result_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -603,532 +588,9 @@ CREATE TABLE IF NOT EXISTS `site_polls_result` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sphider_categories`
---
-
-DROP TABLE IF EXISTS `sphider_categories`;
-CREATE TABLE IF NOT EXISTS `sphider_categories` (
-  `category_id` int(11) NOT NULL AUTO_INCREMENT,
-  `category` text,
-  `parent_num` int(11) DEFAULT NULL,
-  PRIMARY KEY (`category_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_categories`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_domains`
---
-
-DROP TABLE IF EXISTS `sphider_domains`;
-CREATE TABLE IF NOT EXISTS `sphider_domains` (
-  `domain_id` int(11) NOT NULL AUTO_INCREMENT,
-  `domain` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`domain_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_domains`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_keywords`
---
-
-DROP TABLE IF EXISTS `sphider_keywords`;
-CREATE TABLE IF NOT EXISTS `sphider_keywords` (
-  `keyword_id` int(11) NOT NULL AUTO_INCREMENT,
-  `keyword` varchar(30) NOT NULL,
-  PRIMARY KEY (`keyword_id`),
-  UNIQUE KEY `kw` (`keyword`),
-  KEY `keyword` (`keyword`(10))
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_keywords`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_links`
---
-
-DROP TABLE IF EXISTS `sphider_links`;
-CREATE TABLE IF NOT EXISTS `sphider_links` (
-  `link_id` int(11) NOT NULL AUTO_INCREMENT,
-  `site_id` int(11) DEFAULT NULL,
-  `url` varchar(255) NOT NULL,
-  `title` varchar(200) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `fulltxt` mediumtext,
-  `indexdate` date DEFAULT NULL,
-  `size` float DEFAULT NULL,
-  `md5sum` varchar(32) DEFAULT NULL,
-  `visible` int(11) DEFAULT '0',
-  `level` int(11) DEFAULT NULL,
-  PRIMARY KEY (`link_id`),
-  KEY `url` (`url`),
-  KEY `md5key` (`md5sum`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_links`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keyword0`
---
-
-DROP TABLE IF EXISTS `sphider_link_keyword0`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keyword0` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keyword0`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keyword1`
---
-
-DROP TABLE IF EXISTS `sphider_link_keyword1`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keyword1` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keyword1`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keyword2`
---
-
-DROP TABLE IF EXISTS `sphider_link_keyword2`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keyword2` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keyword2`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keyword3`
---
-
-DROP TABLE IF EXISTS `sphider_link_keyword3`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keyword3` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keyword3`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keyword4`
---
-
-DROP TABLE IF EXISTS `sphider_link_keyword4`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keyword4` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keyword4`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keyword5`
---
-
-DROP TABLE IF EXISTS `sphider_link_keyword5`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keyword5` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keyword5`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keyword6`
---
-
-DROP TABLE IF EXISTS `sphider_link_keyword6`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keyword6` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keyword6`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keyword7`
---
-
-DROP TABLE IF EXISTS `sphider_link_keyword7`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keyword7` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keyword7`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keyword8`
---
-
-DROP TABLE IF EXISTS `sphider_link_keyword8`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keyword8` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keyword8`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keyword9`
---
-
-DROP TABLE IF EXISTS `sphider_link_keyword9`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keyword9` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keyword9`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keyworda`
---
-
-DROP TABLE IF EXISTS `sphider_link_keyworda`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keyworda` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keyworda`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keywordb`
---
-
-DROP TABLE IF EXISTS `sphider_link_keywordb`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keywordb` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keywordb`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keywordc`
---
-
-DROP TABLE IF EXISTS `sphider_link_keywordc`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keywordc` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keywordc`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keywordd`
---
-
-DROP TABLE IF EXISTS `sphider_link_keywordd`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keywordd` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keywordd`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keyworde`
---
-
-DROP TABLE IF EXISTS `sphider_link_keyworde`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keyworde` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keyworde`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_link_keywordf`
---
-
-DROP TABLE IF EXISTS `sphider_link_keywordf`;
-CREATE TABLE IF NOT EXISTS `sphider_link_keywordf` (
-  `link_id` int(11) NOT NULL,
-  `keyword_id` int(11) NOT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `domain` int(4) DEFAULT NULL,
-  KEY `linkid` (`link_id`),
-  KEY `keyid` (`keyword_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_link_keywordf`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_pending`
---
-
-DROP TABLE IF EXISTS `sphider_pending`;
-CREATE TABLE IF NOT EXISTS `sphider_pending` (
-  `site_id` int(11) DEFAULT NULL,
-  `temp_id` varchar(32) DEFAULT NULL,
-  `level` int(11) DEFAULT NULL,
-  `count` int(11) DEFAULT NULL,
-  `num` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_pending`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_query_log`
---
-
-DROP TABLE IF EXISTS `sphider_query_log`;
-CREATE TABLE IF NOT EXISTS `sphider_query_log` (
-  `query` varchar(255) DEFAULT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `elapsed` float DEFAULT NULL,
-  `results` int(11) DEFAULT NULL,
-  KEY `query_key` (`query`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_query_log`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_sites`
---
-
-DROP TABLE IF EXISTS `sphider_sites`;
-CREATE TABLE IF NOT EXISTS `sphider_sites` (
-  `site_id` int(11) NOT NULL AUTO_INCREMENT,
-  `url` varchar(255) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `short_desc` text,
-  `indexdate` date DEFAULT NULL,
-  `spider_depth` int(11) DEFAULT '2',
-  `required` text,
-  `disallowed` text,
-  `can_leave_domain` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`site_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_sites`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_site_category`
---
-
-DROP TABLE IF EXISTS `sphider_site_category`;
-CREATE TABLE IF NOT EXISTS `sphider_site_category` (
-  `site_id` int(11) DEFAULT NULL,
-  `category_id` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_site_category`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sphider_temp`
---
-
-DROP TABLE IF EXISTS `sphider_temp`;
-CREATE TABLE IF NOT EXISTS `sphider_temp` (
-  `link` varchar(255) DEFAULT NULL,
-  `level` int(11) DEFAULT NULL,
-  `id` varchar(32) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sphider_temp`
---
-
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(150) DEFAULT NULL,
@@ -1152,7 +614,6 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Table structure for table `user_ratings`
 --
 
-DROP TABLE IF EXISTS `user_ratings`;
 CREATE TABLE IF NOT EXISTS `user_ratings` (
   `rating_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0',
@@ -1172,7 +633,6 @@ CREATE TABLE IF NOT EXISTS `user_ratings` (
 -- Table structure for table `zipcode`
 --
 
-DROP TABLE IF EXISTS `zipcode`;
 CREATE TABLE IF NOT EXISTS `zipcode` (
   `zipcode_id` int(11) NOT NULL AUTO_INCREMENT,
   `zipcode` varchar(10) NOT NULL,
