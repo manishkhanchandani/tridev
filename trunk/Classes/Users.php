@@ -31,12 +31,28 @@ class Users {
 		}
 		return true;
 	}
-	public function login($id, $rem, $email, $role) {
-		if($rem) $time = time()+(60*60*24*365);
-		else $time = 0;
-		setcookie("user_id", $id, $time, "/");
-		setcookie("email", $email, $time, "/");	
-		setcookie("role", $role, $time, "/");	
+	public function login($post) {
+		$sql = "select * from users where email = ".$this->dbFrameWork->qstr(trim($post['email']),get_magic_quotes_gpc())." and password = ".$this->dbFrameWork->qstr(md5($post['password']),get_magic_quotes_gpc());
+		$rs = $this->dbFrameWork->Execute($sql);
+		if($this->dbFrameWork->ErrorMsg()) {
+			throw new Exception($this->dbFrameWork->ErrorMsg());
+		}
+		$num1 = $rs->RecordCount();
+		if($num1==0) {
+			throw new Exception("Email and Password Does Not Matches");
+		} else {
+			$rec = $rs->FetchRow();
+			if($rec['status']==0) {
+				throw new Exception("You have not yet confirmed your email address. Click a link on your email address to confirm your email address.");
+			}
+			if($post['rem']) $time = time()+(60*60*24*365);
+			else $time = 0;
+			setcookie("user_id", $rec['user_id'], $time, "/");
+			setcookie("email", $rec['email'], $time, "/");	
+			setcookie("role", $rec['role'], $time, "/");	
+			setcookie("name", $rec['name'], $time, "/");				
+		}
+		return true;
 	}
 	public function logout() {
 		setcookie("user_id", '', (time()-300), "/");
@@ -72,23 +88,6 @@ class Users {
 			// email ends
 		} else {
 			throw new Exception("Users Email already exists on our database.");
-			/*
-			// check password
-			$sql = "select * from jal_users where email = ".$this->dbFrameWork->qstr(trim($post['email']),get_magic_quotes_gpc())." and password = ".$this->dbFrameWork->qstr(trim($post['password']),get_magic_quotes_gpc());
-			$rs1 = $this->dbFrameWork->Execute($sql);
-			if($this->dbFrameWork->ErrorMsg()) {
-				throw new Exception($this->dbFrameWork->ErrorMsg());
-			}
-			$num1 = $rs1->RecordCount();
-			if($num1==0) {
-				// password is not matching
-				$msg = "Email and Password Does Not Matches";
-			} else {
-				$rec = $rs->FetchRow();
-				$this->login($rec['user_id'], addslashes(stripslashes(trim($post['remember']))), addslashes(stripslashes(trim($rec['email']))), $rec['role']);		
-				$msg = "You are successfully logged on our site";
-			}
-			*/
 		}
 		return true;
 	}

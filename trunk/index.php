@@ -35,7 +35,7 @@ $smarty->assign('PAGETITLE', $PAGETITLE);
 
 define('CACHETIME', 1500); // seconds
 define('SITENAME', 'Tridev.info'); 
-define('SITEURL', HTTPROOT); 
+define('SITEURL', HTTPPATH); 
 define('ADMINNAME', 'Administrator'); 
 define('ADMINEMAIL', 'admin@tridev.info'); 
 $smarty->assign('CACHETIME', CACHETIME);
