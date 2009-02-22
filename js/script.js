@@ -105,3 +105,9 @@ function confirmDelete(msg) {
 	else 
 		return false;
 }
+
+function openGetUrl(url, divtag, param) {
+	jQuery.get(url, param, function(data) {
+		$(divtag).html(data);
+	});	
+}
