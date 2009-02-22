@@ -1,31 +1,62 @@
-<form name="form1" method="post" action="">
-<div id="displayMessage"></div>
+{literal}
+<script language="javascript">
+$(function() { 
+	$('.error').hide();  
+	$(".clickButton").click(function() {  
+	 	// validate and process form here  
+		$('.error').hide(); 
+		var name = $("input#name").val();  
+		if (name == "") {  
+			$("label#name_error").show();  
+			$("input#name").focus();  
+			return false;  
+		}  
+		var dataString = getFormElements(document.myForm);
+		$.ajax({  
+			type: "POST",  
+			url: "index.php?p=profile_edit/general",  
+			data: dataString,  
+			success: function(retData) {
+				$('#displayMessage').html("<span class='errorMessage'>Form Submitted.</span>") 
+				.hide()  
+				.fadeIn(1500, function() {  
+					$('#displayMessage').append("<span class='errorMessage'> Your details updated successfully.</span>");  
+				});  
+			}  
+		});  
+		return false;  
+	});  
+});
+</script>
+{/literal}
+<form name="myForm" method="post" action="" id="myForm">
   <table border="0" cellspacing="1" cellpadding="5">
     <tr>
       <td align="right" valign="top">Name:</td>
-      <td valign="top"><input name="name" type="text" id="name"></td>
+      <td valign="top"><input name="name" type="text" id="name" size="35" value="{$edit.users.0.name}">
+	  <br />
+	  <label class="error" for="name" id="name_error">This field is required.</label>  
+	  </td>
     </tr>
     <tr>
       <td align="right" valign="top">Gender:</td>
-      <td valign="top"><input name="gender" type="radio" value="Male">
+      <td valign="top"><input name="gender" type="radio" value="Male" {if $edit.profile1.0.gender == 'Male'}checked{/if}>
         Male
           <br>
-          <input name="gender" type="radio" value="Female"> 
+          <input name="gender" type="radio" value="Female" {if $edit.profile1.0.gender == 'Female'}checked{/if}> 
           Female 
           <br>
-          <input name="gender" type="radio" value="Couple">
-          Couple 
-          <br>
-          <input name="gender" type="radio" value="GroupM">
-          Group Male (more than 2 males) <br>
-          <input name="gender" type="radio" value="GroupF">
-Group Female (more than 2 females) <br>
-<input name="gender" type="radio" value="GroupC">
-Group Couples (more than 2 males and females) </td>
+          <input name="gender" type="radio" value="Couple" {if $edit.profile1.0.gender == 'Couple'}checked{/if}>
+          Couple      </td>
     </tr>
     <tr>
       <td align="right" valign="top">Relationship Status: </td>
       <td valign="top"><select name="marital_status" id="marital_status">
+	  <option value="1" {if $edit.profile1.0.marital_status == '1'}selected{/if}>Single</option>
+	  <option value="2" {if $edit.profile1.0.marital_status == '2'}selected{/if}>Seperated</option>
+	  <option value="3" {if $edit.profile1.0.marital_status == '3'}selected{/if}>Divorced</option>
+	  <option value="4" {if $edit.profile1.0.marital_status == '4'}selected{/if}>Widowed</option>
+	  <option value="5" {if $edit.profile1.0.marital_status == '5'}selected{/if}>Married</option>
       </select>      </td>
     </tr>
     <tr>
@@ -34,15 +65,15 @@ Group Couples (more than 2 males and females) </td>
     </tr>
     <tr>
       <td align="right" valign="top">City:</td>
-      <td valign="top"><input name="city" type="text" id="city"></td>
+      <td valign="top"><input name="city" type="text" id="city" value=""></td>
     </tr>
     <tr>
       <td align="right" valign="top">State/ Province:</td>
-      <td valign="top"><input name="province" type="text" id="province"></td>
+      <td valign="top"><input name="province" type="text" id="province" value=""></td>
     </tr>
     <tr>
       <td align="right" valign="top">Zipcode/ Pincode: </td>
-      <td valign="top"><input name="zipcode" type="text" id="zipcode"></td>
+      <td valign="top"><input name="zipcode" type="text" id="zipcode" value=""></td>
     </tr>
     <tr>
       <td align="right" valign="top">Country:</td>
@@ -279,15 +310,15 @@ Group Couples (more than 2 males and females) </td>
     </tr>
     <tr>
       <td align="right" valign="top">High School: </td>
-      <td valign="top"><input name="highschool" type="text" id="highschool"></td>
+      <td valign="top"><input name="highschool" type="text" id="highschool" value=""></td>
     </tr>
     <tr>
       <td align="right" valign="top">College/ University: </td>
-      <td valign="top"><input name="college" type="text" id="college"></td>
+      <td valign="top"><input name="college" type="text" id="college" value=""></td>
     </tr>
     <tr>
       <td align="right" valign="top">Company/ Organization: </td>
-      <td valign="top"><input name="company" type="text" id="company"></td>
+      <td valign="top"><input name="company" type="text" id="company" value=""></td>
     </tr>
     <tr>
       <td align="right" valign="top">Interested In: </td>
@@ -309,7 +340,9 @@ dating
     </tr>
     <tr>
       <td align="right" valign="top">&nbsp;</td>
-      <td valign="top"><input type="button" name="Button" value="Update" onClick="alert('form submited');"></td>
+      <td valign="top">	  
+		<div id="displayMessage"></div>
+	  	<input type="button" name="Button" value="Update" class="clickButton"><input type="hidden" name="MM_Insert" value="1" /></td>
     </tr>
   </table>
 </form>
