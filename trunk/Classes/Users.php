@@ -58,6 +58,8 @@ class Users {
 		setcookie("user_id", '', (time()-300), "/");
 		setcookie("email", '', (time()-300), "/");	
 		setcookie("role", '', (time()-300), "/");	
+		setcookie("name", $rec['name'], $time, "/");
+		return true;	
 	}
 	public function addNewUser($post) {
 		$sql = "select * from users where email = ".$this->dbFrameWork->qstr(trim($post['email']),get_magic_quotes_gpc());

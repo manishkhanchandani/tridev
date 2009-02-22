@@ -5,7 +5,6 @@
 			$PAGETITLE = "Welcome To Tridev Social Network :: Forgot Password";
 			if($_POST['MM_Type']=="forgot") {
 				$Users = new Users;
-				print_r($_POST);
 			}
 			$styleJs = HTTPPATH."/js/forgot.js";
 			$smarty->assign('styleJs', $styleJs);
@@ -45,24 +44,38 @@
 			} 
 			$body = $smarty->fetch('confirm.html');
 			break;
+		case 'logout':			
+			$styleJs = HTTPPATH."/js/login.js";
+			$smarty->assign('styleJs', $styleJs);
+			try {
+				$Users = new Users;
+				$Users->logout();
+			} catch (exception $e) { 
+				$errorMessage = $e->getMessage();
+				$smarty->assign('errorMessage', $errorMessage);
+				$body = $smarty->fetch('login.html');
+			} 
+			$body = $smarty->fetch('login.html');
+			break;
 		default:
 			$PAGETITLE = "Welcome To Tridev Social Network :: Login";
+			$styleJs = HTTPPATH."/js/login.js";
+			$smarty->assign('styleJs', $styleJs);
 			if($_POST['MM_Type']=="login") {
 				try {
 					$Users = new Users;
 					$Users->validate_email($_POST['email']);
 					$Users->validateLoginForm($_POST);
 					$Users->login($_POST);
-					header("Location: index.php?p=main");
+					$body = $smarty->fetch('loginsuccess.html');
+					echo $body;
 					exit;
 				} catch (exception $e) { 
 					$errorMessage = $e->getMessage();
 					$smarty->assign('errorMessage', $errorMessage);
-					$body = $smarty->fetch('register.html');
+					$body = $smarty->fetch('login.html');
 				} 
 			}
-			$styleJs = HTTPPATH."/js/login.js";
-			$smarty->assign('styleJs', $styleJs);
 			$body = $smarty->fetch('login.html');
 			break;
 	}
