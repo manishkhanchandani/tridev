@@ -74,8 +74,18 @@ if (function_exists('__autoload')) {
 }
 $Common = new Common($dbFrameWork); // this is common class used all over the site.
 if($_GET['p']) $p = $_GET['p'].".php";
-if(!$p) $p = "home.php";
+if(!$p) {
+	$p = "home.php";
+	if($_COOKIE['user_id'] && $_GET['action']!="logout") {
+		header("Location: index.php?p=main");
+		exit;
+	}
+}
 if(!file_exists($p)) $p = "error.php";
+if($p=="main.php" && !$_COOKIE['user_id']) {
+	header("Location: index.php");
+	exit;
+}
 include_once($p);
 
 
